@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+    <h2>Ticket #{{ ticket.id }} - {{ ticket.subject }}</h2>
+    <p>Status: <strong>{{ ticket.status }}</strong> | Language: {{ ticket.language }}</p>
+    {% if user.role == "AGENT" or user.role == "ADMIN" %}
+    <form method="post" action="{% url 'update_ticket_status' ticket.id %}">
+        {% csrf_token %}
+        <select name="status">
+            <option value="OPEN">OPEN</option>
+            <option value="IN_PROGRESS">IN_PROGRESS</option>
+            <option value="RESOLVED">RESOLVED</option>
+            <option value="ESCALATED">ESCALATED</option>
+        </select>
+        <button type="submit">Update Status</button>
+    </form>
+    {% endif %}
+</section>
+
+<section class="card">
+    <h3>Conversation</h3>
+    <div class="messages">
+        {% for msg in messages %}
+            <div class="msg {% if msg.is_ai_response %}ai{% endif %}">
+                <p>{{ msg.content }}</p>
+                <small>Sentiment: {{ msg.sentiment_label }} ({{ msg.sentiment_score|floatformat:2 }})</small>
+            </div>
+        {% empty %}
+            <p>No messages yet.</p>
+        {% endfor %}
+    </div>
+    <form method="post" id="message-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send Message</button>
+    </form>
+    <button id="voice-btn" type="button">Start Voice Waveform</button>
+    <canvas id="waveform" width="500" height="100"></canvas>
+</section>
+{% endblock %}

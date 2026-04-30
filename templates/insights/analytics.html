@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="card">
+    <h2>Admin Analytics Dashboard</h2>
+    <p>Total tickets: <strong>{{ total_tickets }}</strong></p>
+    <p>Escalations: <strong>{{ escalation_count }}</strong></p>
+</section>
+
+<section class="grid">
+    <article class="card">
+        <h3>Ticket Status Breakdown</h3>
+        <ul>
+            {% for item in ticket_stats %}
+                <li>{{ item.status }}: {{ item.total }}</li>
+            {% endfor %}
+        </ul>
+    </article>
+    <article class="card">
+        <h3>Sentiment Overview</h3>
+        <ul>
+            {% for item in sentiment_stats %}
+                <li>{{ item.sentiment_label }}: {{ item.total }} (avg {{ item.avg|floatformat:2 }})</li>
+            {% endfor %}
+        </ul>
+    </article>
+</section>
+{% endblock %}

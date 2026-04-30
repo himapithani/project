@@ -1,0 +1,15 @@
+body { font-family: Arial, sans-serif; margin: 0; background: #f4f7fb; color: #1f2937; }
+.topbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #0f172a; color: #fff; }
+.topbar a { color: #93c5fd; margin-left: 1rem; text-decoration: none; }
+.container { width: min(1080px, 92%); margin: 1rem auto; }
+.card, .auth-card { background: #fff; border-radius: 14px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-items: center; margin-bottom: 1rem; }
+.hero img { width: 100%; border-radius: 14px; max-height: 280px; object-fit: cover; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+.ticket-list { list-style: none; padding: 0; }
+.ticket-list li { display: flex; justify-content: space-between; padding: .6rem 0; border-bottom: 1px solid #e5e7eb; }
+.messages { max-height: 320px; overflow-y: auto; margin-bottom: 1rem; }
+.msg { background: #eef2ff; padding: .7rem; border-radius: 8px; margin-bottom: .7rem; }
+.msg.ai { background: #dcfce7; }
+button, .btn { background: #2563eb; color: #fff; border: 0; border-radius: 8px; padding: .55rem .9rem; cursor: pointer; text-decoration: none; }
+input, select, textarea { width: 100%; padding: .5rem; margin: .35rem 0 .8rem; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; }

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Support System</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script defer src="{% static 'js/app.js' %}"></script>
+</head>
+<body>
+    <header class="topbar">
+        <div>
+            <h1>Intelligent Customer Support</h1>
+            <p>AI + human collaboration for better customer outcomes</p>
+        </div>
+        <nav>
+            {% if user.is_authenticated %}
+                <a href="{% url 'dashboard' %}">Dashboard</a>
+                {% if user.role == "ADMIN" %}
+                    <a href="{% url 'analytics_dashboard' %}">Analytics</a>
+                {% endif %}
+                <a href="#" onclick="switchLanguage('en'); return false;">EN</a>
+                <a href="#" onclick="switchLanguage('hi'); return false;">HI</a>
+                <a href="#" onclick="switchLanguage('es'); return false;">ES</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
