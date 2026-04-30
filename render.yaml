@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: intelligent-support-system
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn config.wsgi:application"
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_ALLOWED_HOSTS
+        value: "intelligent-support-system.onrender.com,localhost,127.0.0.1"
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
